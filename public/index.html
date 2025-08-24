@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>طلب البوكس - Cannol</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #957766;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px 20px 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    /* تعديل كلمة Cannol لتكون جذابة */
+    .site-name {
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: 'Segoe UI Black', 'Arial Black', Arial, sans-serif;
+      background: linear-gradient(90deg, #b6784c, #6a4827);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 6px;
+      text-shadow:
+        2px 2px 8px rgba(106, 72, 39, 0.7),
+        0 0 15px rgba(182, 120, 76, 0.6);
+      user-select: none;
+      text-transform: uppercase;
+      margin-bottom: 6px; /* تقليل المسافة تحتها */
+    }
+
+    /* النص تحت Cannol */
+    .subtitle {
+      font-size: 1.1rem;
+      color: #6a4827;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      font-family: 'Arial', sans-serif;
+      user-select: none;
+      /* ممكن تضيف ظل خفيف لو تحب */
+      text-shadow: 1px 1px 2px rgba(150, 111, 73, 0.4);
+    }
+
+    /* Container for store name and boxes inputs */
+    .inputs-group {
+      margin-bottom: 28px;
+      text-align: right;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #5a4b3b;
+      font-size: 1.15rem;
+      letter-spacing: 0.3px;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      border-radius: 10px;
+      border: 1.8px solid #c4b49f;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #886f5a;
+      outline: none;
+      box-shadow: 0 0 5px #886f5a66;
+    }
+
+    button {
+      background: linear-gradient(135deg, #b6784c, #6a4827);
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(182, 120, 76, 0.6);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #d99a59, #7c5732);
+      box-shadow: 0 8px 20px rgba(217, 154, 89, 0.8);
+    }
+
+    #total {
+      font-weight: bold;
+      margin-bottom: 18px;
+      text-align: center;
+      font-size: 1.15rem;
+      color: #3a2f23;
+      display: none; /* مخفي */
+    }
+
+    .warning {
+      color: #cc0000;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    @media (max-width: 450px) {
+      body {
+        padding: 15px 10px;
+      }
+      .card {
+        padding: 20px 15px 25px;
+      }
+      .site-name {
+        font-size: 2.2rem;
+        letter-spacing: 4px;
+      }
+      .subtitle {
+        font-size: 1rem;
+        margin-bottom: 15px;
+      }
+      .inputs-group label {
+        font-size: 1.05rem;
+      }
+      input,
+      select,
+      button {
+        font-size: 15px;
+        padding: 12px 14px;
+      }
+      #total {
+        font-size: 1rem;
+      }
+      .warning {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="site-name">Cannol</div>
+    <div class="subtitle">موقع كانول لطلب بوكسات بالجملة</div>
+    <form id="orderForm">
+      <div class="inputs-group">
+        <label for="store">اسم المحل</label>
+        <input type="text" id="store" placeholder="مثال: Al Cake" required />
+      </div>
+
+      <div class="inputs-group">
+        <label for="boxes">عدد البوكسات</label>
+        <input type="number" id="boxes" placeholder="مثال: 5" min="1" required />
+      </div>
+
+      <label for="payment">طريقة الدفع</label>
+      <select id="payment">
+        <option value="تحويل">تحويل</option>
+        <option value="الدفع عند الاستلام في الفرع">الدفع عند الاستلام في الفرع</option>
+      </select>
+
+      <div id="total">السعر الإجمالي: 0 ريال</div>
+      <button type="submit">إرسال الطلب</button>
+    </form>
+    <div class="warning">* ملاحظة: نقاط البيع في بريده ممنوعه</div>
+  </div>
+
+  <script>
+    const pricePerBox = 55;
+    const boxesInput = document.getElementById('boxes');
+    const totalDiv = document.getElementById('total');
+
+    boxesInput.addEventListener('input', () => {
+      const count = Number(boxesInput.value);
+      if (count >= 1) {
+        const total = count * pricePerBox;
+        totalDiv.textContent = `السعر الإجمالي: ${total} ريال`;
+        totalDiv.style.display = 'block';
+      } else {
+        totalDiv.style.display = 'none';
+      }
+    });
+
+    document.getElementById("orderForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const store = document.getElementById("store").value.trim();
+      const boxes = Number(document.getElementById("boxes").value.trim());
+      const payment = document.getElementById("payment").value;
+
+      if (!store || boxes < 1) {
+        alert("الرجاء تعبئة جميع البيانات بشكل صحيح.");
+        return;
+      }
+
+      const total = boxes * pricePerBox;
+
+      try {
+        const res = await fetch("/submit-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ store, boxes, payment }),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          alert("✅ تم إرسال الطلب!");
+
+          if(payment === "تحويل") {
+            alert("الرجاء ارسال ايصال على واتساب");
+            // رسالة واتساب مع اسم المحل، عدد البوكسات والسعر
+            const message = `مرحباً، أرسلت طلب بوكسات\nاسم المحل: ${store}\nعدد البوكسات: ${boxes}\nالسعر الإجمالي: ${total} ريال\nنوع السداد: تحويل`;
+            const phone = "966551908911"; // رقم واتساب مع كود الدولة السعودية (966)
+            const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, "_blank");
+          }
+
+          this.reset();
+          totalDiv.style.display = 'none';
+        } else {
+          alert("❌ خطأ: " + data.error);
+        }
+      } catch (err) {
+        alert("❌ حدث خطأ: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
